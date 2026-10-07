@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暗記 — Flashcard Bahasa Jepang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- GERBANG PASSWORD -->
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <div class="eyebrow">アクセス制限</div>
+    <h1 style="font-size:24px;">Masukkan Password</h1>
+    <p>Halaman ini terkunci. Masukkan password untuk lanjut.</p>
+    <input type="password" id="gateInput" placeholder="Password" autocomplete="off">
+    <button class="btn" id="gateBtn" style="width:100%;margin-top:12px;">Masuk</button>
+    <div class="gate-error" id="gateError">Password salah, coba lagi.</div>
+  </div>
+</div>
+
+<!-- MENU PILIH LEVEL -->
+<div class="menu" id="menu" style="display:none;">
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">暗記帳</div>
+      <h1>Mau Belajar Apa?</h1>
+      <p>Pilih level JLPT atau mulai dari huruf dasar.</p>
+    </header>
+
+    <div class="menu-section">
+      <h2>Level JLPT</h2>
+      <div class="menu-grid" id="levelGrid"></div>
+    </div>
+
+    <div class="menu-section">
+      <h2>Huruf Dasar</h2>
+      <div class="menu-grid" id="kanaGrid"></div>
+      <button class="gallery-btn" id="openGalleryBtn">📖 Galeri Semua Huruf</button>
+    </div>
+  </div>
+</div>
+
+<!-- GALERI HURUF (referensi visual, bukan kuis) -->
+<div class="menu" id="galleryScreen" style="display:none;">
+  <div class="wrap">
+    <button class="back-link" id="galleryBackBtn">← Kembali ke menu</button>
+    <header>
+      <div class="eyebrow">REFERENSI</div>
+      <h1>Galeri Huruf</h1>
+      <p>Semua hiragana &amp; katakana, dari dasar sampai tambahan bunyi.</p>
+    </header>
+    <div id="galleryContent"></div>
+  </div>
+</div>
+
+<!-- SUBMENU PILIH TAMPILAN SKRIP (khusus level N5-N1) -->
+<div class="menu" id="scriptMenu" style="display:none;">
+  <div class="wrap">
+    <button class="back-link" id="scriptBackBtn">← Kembali ke menu</button>
+    <header>
+      <div class="eyebrow" id="scriptMenuEyebrow">JLPT N5</div>
+      <h1>Mau Tampilan Kata Seperti Apa?</h1>
+      <p>Pilih cara kata ditampilkan di kartu.</p>
+    </header>
+
+    <div class="menu-grid" id="scriptGrid"></div>
+  </div>
+</div>
+
+<!-- LAYAR FLASHCARD -->
+<div class="wrap" id="mainWrap" style="display:none;">
+
+  <button class="back-link" id="backBtn">← Kembali ke menu</button>
+
+  <header>
+    <div class="eyebrow" id="modeEyebrow">JLPT N5</div>
+    <h1 id="modeTitle">暗記帳 — Kartu Hafalan</h1>
+    <p>Klik kartu untuk membalik. Tandai yang sudah hafal dengan cap merah.</p>
+  </header>
+
+  <div class="progress-row">
+    <span id="counter">1 / 1</span>
+    <span id="masteredCount">0 hafal</span>
+  </div>
+  <div class="bar"><div class="bar-fill" id="barFill" style="width:0%"></div></div>
+
+  <div class="stage">
+    <div class="card-simple" id="card">
+      <span class="tag" id="tagFront">kosakata</span>
+      <div class="front-word" id="frontWord">言葉</div>
+      <div class="front-sub" id="frontSub"></div>
+    </div>
+  </div>
+
+  <div class="answer-row">
+    <div class="answer-form" id="answerForm">
+      <input type="text" id="answerInput" placeholder="Tulis artinya di sini..." autocomplete="off">
+      <button class="btn" id="checkBtn">Cek Jawaban</button>
+    </div>
+    <div class="settings-wrap">
+      <button class="icon-btn" id="settingsBtn" title="Pengaturan">⚙️</button>
+      <div class="settings-panel" id="settingsPanel">
+        <label class="switch-row">
+          <span>Tampilkan Romaji</span>
+          <span class="switch">
+            <input type="checkbox" id="romajiToggle">
+            <span class="slider"></span>
+          </span>
+        </label>
+        <label class="switch-row" style="margin-top:12px;">
+          <span>Jawaban B. Indonesia Saja</span>
+          <span class="switch">
+            <input type="checkbox" id="indoToggle">
+            <span class="slider"></span>
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="feedback" id="feedback">
+    <div class="feedback-verdict" id="feedbackVerdict">Benar!</div>
+    <div class="feedback-answer" id="feedbackAnswer"></div>
+    <button class="btn" id="nextBtn">Selanjutnya →</button>
+  </div>
+
+  <div class="nav">
+    <button class="btn secondary" id="shuffleBtn"> Acak </button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
